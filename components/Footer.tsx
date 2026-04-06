@@ -1,84 +1,94 @@
 
 import React from 'react';
-import { Facebook, Instagram, Linkedin, Twitter } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Twitter, ArrowUpRight } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-[#0f0720] pt-20 pb-10 px-6">
+    <footer className="bg-obsidian pt-32 pb-12 px-6 border-t border-white/5 relative overflow-hidden">
+      {/* Background Glow */}
+      <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-electric/5 blur-[120px] rounded-full pointer-events-none"></div>
+      
       <div className="max-w-7xl mx-auto">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
-          {/* Logo Column */}
-          <div className="col-span-1 lg:col-span-1">
-            <div className="flex items-center space-x-2 mb-6">
-              <div className="relative w-10 h-10 bg-gradient-to-br from-[#00d2ff] to-[#ff00ff] rounded-lg flex items-center justify-center transform rotate-45">
-                <span className="text-white font-bold text-xl transform -rotate-45">C</span>
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-16 lg:gap-24 mb-24">
+          
+          {/* Brand Column */}
+          <div className="md:col-span-12 lg:col-span-5">
+            <div className="flex items-center space-x-3 mb-8">
+              <div className="w-10 h-10 bg-gradient-to-tr from-electric to-violet rounded-xl flex items-center justify-center">
+                <span className="text-obsidian font-black text-xl italic">C</span>
               </div>
-              <div className="flex flex-col">
-                <span className="text-white font-bold tracking-widest text-xl leading-none">CARLOSHA</span>
-                <span className="text-[8px] text-gray-400 tracking-[0.2em]">CRAFTING LUXURY DIGITAL</span>
-              </div>
+              <span className="text-white font-black tracking-tighter text-3xl leading-none">CARLOSHA</span>
             </div>
-            <p className="text-gray-400 text-sm leading-relaxed mb-8">
-              We create world-class software solutions for businesses ready to thrive in the digital era.
+            <p className="text-white/40 text-lg font-medium leading-relaxed mb-10 max-w-sm">
+              Architecting the next generation of digital experiences with artisanal precision and industrial-scale engineering.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white hover:bg-blue-600 transition-all">
-                <Facebook size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white hover:bg-pink-600 transition-all">
-                <Instagram size={18} />
-              </a>
-              <a href="#" className="w-10 h-10 bg-white/5 rounded-full flex items-center justify-center text-white hover:bg-blue-400 transition-all">
-                <Linkedin size={18} />
-              </a>
+              {[Facebook, Instagram, Linkedin, Twitter].map((Icon, idx) => (
+                <motion.a 
+                  key={idx}
+                  whileHover={{ y: -5, backgroundColor: '#00f2ff', color: '#050505' }}
+                  href="#" 
+                  className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-white transition-all"
+                >
+                  <Icon size={20} />
+                </motion.a>
+              ))}
             </div>
           </div>
 
-          {/* Links Column */}
-          <div>
-            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-xs">Navigation</h4>
-            <ul className="space-y-4">
-              {['Services', 'Our Projects', 'About Us', 'Contact Us'].map((link) => (
+          {/* Navigation */}
+          <div className="md:col-span-4 lg:col-span-2">
+            <h4 className="text-[10px] font-black text-white/20 tracking-[0.4em] uppercase mb-10">Navigation</h4>
+            <ul className="space-y-6">
+              {['Solutions', 'Portfolio', 'Agency', 'Contact'].map((link) => (
                 <li key={link}>
-                  <a href={`#${link.toLowerCase().replace(' ', '')}`} className="text-gray-400 hover:text-white transition-colors text-sm">
-                    {link}
+                  <a href={`#${link.toLowerCase()}`} className="group flex items-center gap-2 text-white/50 hover:text-white font-bold text-sm transition-all">
+                    {link} <ArrowUpRight size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
                   </a>
                 </li>
               ))}
             </ul>
           </div>
 
-          {/* Office Column */}
-          <div>
-            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-xs">Office</h4>
-            <p className="text-gray-400 text-sm leading-relaxed mb-4">
-              368/14D St Mary's Garden<br />
-              Hapugoda Kandana,<br />
-              Sri Lanka
-            </p>
-            <p className="text-gray-400 text-sm">
-              +94 70 131 4700
-            </p>
+          {/* Services */}
+          <div className="md:col-span-4 lg:col-span-2">
+            <h4 className="text-[10px] font-black text-white/20 tracking-[0.4em] uppercase mb-10">Services</h4>
+            <ul className="space-y-6">
+              {['Web Systems', 'Mobile Luxury', 'ERP Solutions', 'UI/UX Design'].map((service) => (
+                <li key={service}>
+                  <a href="#" className="text-white/50 hover:text-white font-bold text-sm transition-all">
+                    {service}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
-          {/* Follow Us Column */}
-          <div>
-            <h4 className="text-white font-bold mb-8 tracking-wider uppercase text-xs">Follow Us</h4>
-            <div className="flex items-center space-x-4 text-blue-400">
-               <Facebook size={20} className="cursor-pointer hover:text-white transition-all" />
-               <Instagram size={20} className="cursor-pointer hover:text-white transition-all" />
-               <Linkedin size={20} className="cursor-pointer hover:text-white transition-all" />
-            </div>
+          {/* Contact */}
+          <div className="md:col-span-4 lg:col-span-3">
+            <h4 className="text-[10px] font-black text-white/20 tracking-[0.4em] uppercase mb-10">Contact</h4>
+            <address className="not-italic space-y-6">
+              <p className="text-white font-bold text-sm leading-relaxed">
+                Hapugoda Kandana,<br />
+                Sri Lanka
+              </p>
+              <div className="space-y-2">
+                <a href="mailto:carloshatech@gmail.com" className="text-electric font-black text-sm block">carloshatech@gmail.com</a>
+                <a href="tel:+94701314700" className="text-white/40 font-bold text-xs block">+94 70 131 4700</a>
+              </div>
+            </address>
           </div>
         </div>
 
-        <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4 text-center">
-          <p className="text-gray-500 text-[10px] tracking-widest uppercase">
-            © 2025 CARLOSHA. All rights reserved.
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="text-white/20 text-[10px] font-black tracking-[0.4em] uppercase">
+            © 2024 CARLOSHA • CRAFTED WITH RIGOR
           </p>
-          <div className="flex space-x-6 text-[10px] tracking-widest uppercase text-gray-500">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+          <div className="flex gap-10">
+            <a href="#" className="text-white/20 hover:text-white text-[10px] font-black tracking-[0.3em] uppercase transition-colors">Privacy</a>
+            <a href="#" className="text-white/20 hover:text-white text-[10px] font-black tracking-[0.3em] uppercase transition-colors">Terms</a>
           </div>
         </div>
       </div>

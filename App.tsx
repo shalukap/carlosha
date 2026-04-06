@@ -12,15 +12,23 @@ import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen flex flex-col items-center bg-obsidian text-white">
       <Navbar />
-      <Hero />
-      <Solutions />
-      <Projects />
-      <Story />
-      <WhyChooseUs />
-      <Technologies />
-      <Contact />
+      <div className="w-full">
+        <Hero />
+        <Solutions />
+        <Projects />
+        {/* Physical Spacer for Narrative Transition */}
+        <div className="h-24 md:h-36 lg:h-[120px]" />
+        <Story />
+        <div className="h-24 md:h-36 lg:h-[120px]" />
+        <WhyChooseUs />
+        <div className="h-24 md:h-36 lg:h-[120px]" />
+        <Technologies />
+        <div className="h-24 md:h-36 lg:h-[120px]" />
+        <Contact />
+      </div>
+      <div className="h-24 md:h-36 lg:h-[120px]" />
       <Footer />
     </div>
   );
